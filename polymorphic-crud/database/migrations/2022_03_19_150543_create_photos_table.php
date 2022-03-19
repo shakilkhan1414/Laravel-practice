@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('taggables', function (Blueprint $table) {
+        Schema::create('photos', function (Blueprint $table) {
             $table->id();
-            $table->integer('tag_id');
-            $table->integer('taggable_id');
-            $table->string('taggable_type');
+            $table->string('path');
+            $table->integer('imageable_id');
+            $table->string('imageable_type');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('taggables');
+        Schema::dropIfExists('photos');
     }
 };
