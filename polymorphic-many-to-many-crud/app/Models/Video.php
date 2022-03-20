@@ -10,4 +10,8 @@ class Video extends Model
     use HasFactory;
 
     protected $fillable=['name'];
+
+    public function tags(){
+        return $this->morphToMany('App\Models\Tag','taggable');
+    }
 }
