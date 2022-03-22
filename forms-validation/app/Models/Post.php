@@ -10,4 +10,9 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable=['title','body'];
+
+    public function scopeLatest($query){
+        return $query->orderBy('id','asc')->get();
+    }
+
 }
