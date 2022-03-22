@@ -18,6 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/posts', PostsController::class);
-
-
+Route::group(['middleware'=>'web'],function(){
+    Route::resource('/posts', PostsController::class);
+});
