@@ -5,7 +5,7 @@
     <h1>Create</h1>
     <br>
 
-    {!! Form::open(['method'=>'POST','action'=>'App\Http\Controllers\PostsController@store']) !!}
+    {!! Form::open(['method'=>'POST','action'=>'App\Http\Controllers\PostsController@store','files'=>true]) !!}
         <div class="form-group">
             {!! Form::label('title', 'Title:') !!}
             {!! Form::text('title', null, ['class'=>'form-control']) !!}
@@ -13,6 +13,10 @@
         <div class="form-group">
             {!! Form::label('body', 'Body:') !!}
             {!! Form::text('body', null, ['class'=>'form-control']) !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('file', 'Upload image:') !!}
+            {!! Form::file('file', ['class'=>'form-control']) !!}
         </div>
         <div class="form-group">
             {!! Form::submit('Create', ['class'=>'btn btn-primary form-control']) !!}
