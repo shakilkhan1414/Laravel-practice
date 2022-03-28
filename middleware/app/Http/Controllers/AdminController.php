@@ -20,9 +20,9 @@ class AdminController extends Controller
         // return $request->session()->all();
         // return $request->session()->get('name');
         $request->session()->forget('course');
-        $request->session()->flash('message','Post created');
-        $request->session()->reflash();
-        $request->session()->keep('message');
+        // $request->session()->flash('message','Post created');
+        // $request->session()->reflash();
+        // $request->session()->keep('message');
         // $request->session()->flush();
 
         return $request->session()->all();
