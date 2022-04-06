@@ -2,7 +2,7 @@
 
     @section('main-content')
 
-        <h1 class="my-4">Blog posts</h1>
+        <h2 class="my-4">Blog List</h2>
 
         <!-- Blog Post -->
         @foreach ($posts as $post)
