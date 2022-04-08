@@ -16,4 +16,13 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getPostImageAttribute($value){
+        if(str_contains($value,'images/post')){
+            return asset('storage/' . $value);
+        }
+        else{
+            return asset($value);
+        }
+    }
+
 }
