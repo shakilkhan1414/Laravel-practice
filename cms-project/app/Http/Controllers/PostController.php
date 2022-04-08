@@ -12,7 +12,7 @@ class PostController extends Controller
 {
 
     public function index(){
-        $posts=Post::all();
+        $posts=Post::paginate(5);
         return view('posts.index',compact('posts'));
     }
 
@@ -66,6 +66,12 @@ class PostController extends Controller
 
         $post->title=$input['title'];
         $post->body=$input['body'];
+
+        $this->authorize('update',$post);
+
+        // if(auth()->user()->can('view',$post)){
+
+        // }
 
         $post->update();
         session()->flash('updated-message','Post was updated!');

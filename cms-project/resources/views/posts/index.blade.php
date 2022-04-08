@@ -53,12 +53,16 @@
                             <td>{{$post->created_at->diffForHumans()}}</td>
                             <td>{{$post->updated_at->diffForHumans()}}</td>
                             <td>
-                                <form action="{{route('post.destroy',$post->id)}}" method="post" enctype="multipart/form-data">
-                                    {{ csrf_field() }}
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
-                                <a href="{{route('post.edit',$post->id)}}" class="btn btn-primary btn-sm">Edit</a>
+
+                                @can('view', $post)
+                                    <form action="{{route('post.destroy',$post->id)}}" method="post" enctype="multipart/form-data">
+                                        {{ csrf_field() }}
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                @endcan
+
+                                <a href="{{route('post.edit',$post->id)}}" class="btn btn-primary btn-sm" style="margin-top: 5px;">Edit</a>
                             </td>
                         </tr>
                       @endforeach
@@ -69,12 +73,14 @@
             </div>
           </div>
 
+          {{$posts->links()}}
+
     @endsection
 
     @section('scripts')
         <script src="{{asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
         <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
-        <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
+        {{-- <script src="{{asset('js/demo/datatables-demo.js')}}"></script> --}}
     @endsection
 
 
