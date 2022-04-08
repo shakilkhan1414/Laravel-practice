@@ -54,6 +54,8 @@
                             <td>{{$post->updated_at->diffForHumans()}}</td>
                             <td>
 
+                                <a href="{{route('post.edit',$post->id)}}" class="btn btn-primary btn-sm" style="margin-bottom: 5px;">Edit</a>
+
                                 @can('view', $post)
                                     <form action="{{route('post.destroy',$post->id)}}" method="post" enctype="multipart/form-data">
                                         {{ csrf_field() }}
@@ -62,7 +64,6 @@
                                     </form>
                                 @endcan
 
-                                <a href="{{route('post.edit',$post->id)}}" class="btn btn-primary btn-sm" style="margin-top: 5px;">Edit</a>
                             </td>
                         </tr>
                       @endforeach
@@ -73,20 +74,6 @@
               {{$posts->links()}}
             </div>
           </div>
-
-          <style>
-            .card-body nav{
-              margin-top: 20px;
-              margin-bottom: 20px;
-            }
-            .card-body nav div:last-child div:first-child{
-              margin-top: 20px;
-            }
-            .card-body nav div:last-child div:last-child{
-              display: none;
-            }
-          </style>
-
 
 
     @endsection
