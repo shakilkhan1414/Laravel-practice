@@ -38,5 +38,6 @@ Route::middleware('auth')->group(function(){
 
 // php artisan storage:link
 // php artisan make:policy PostPolicy --model=Post
+// php artisan vendor:publish
 
 

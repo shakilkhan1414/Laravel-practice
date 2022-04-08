@@ -70,10 +70,24 @@
                   </tbody>
                 </table>
               </div>
+              {{$posts->links()}}
             </div>
           </div>
 
-          {{$posts->links()}}
+          <style>
+            .card-body nav{
+              margin-top: 20px;
+              margin-bottom: 20px;
+            }
+            .card-body nav div:last-child div:first-child{
+              margin-top: 20px;
+            }
+            .card-body nav div:last-child div:last-child{
+              display: none;
+            }
+          </style>
+
+
 
     @endsection
 
@@ -82,6 +96,8 @@
         <script src="{{asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
         {{-- <script src="{{asset('js/demo/datatables-demo.js')}}"></script> --}}
     @endsection
+
+
 
 
 </x-admin-master>
