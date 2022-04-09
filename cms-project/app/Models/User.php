@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar'
     ];
 
     /**
@@ -66,6 +67,15 @@ class User extends Authenticatable
 
     public function setPasswordAttribute($value){
         return $this->attributes['password']=bcrypt($value);
+    }
+
+    public function getAvatarAttribute($value){
+        if(str_contains($value,'images/user')){
+            return asset('storage/' . $value);
+        }
+        else{
+            return asset($value);
+        }
     }
 
 }
