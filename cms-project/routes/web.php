@@ -39,10 +39,22 @@ Route::middleware('auth')->group(function(){
 });
 
 Route::middleware('role:admin')->group(function(){
+    
     Route::get('/admin/users/',[App\Http\Controllers\UserController::class,'index'])->name('user.index');
     Route::get('/admin/users/{user}/roles',[App\Http\Controllers\RoleController::class,'show'])->name('user.roles');
     Route::put('/admin/users/{user}/roles/attach',[App\Http\Controllers\UserController::class,'attach'])->name('user.role.attach');
     Route::put('/admin/users/{user}/roles/detach',[App\Http\Controllers\UserController::class,'detach'])->name('user.role.detach');
+    Route::get('/admin/roles',[App\Http\Controllers\RoleController::class,'index'])->name('role.index');
+    Route::get('/admin/permission',[App\Http\Controllers\PermissionController::class,'index'])->name('permission.index');
+    Route::post('/admin/role/create',[App\Http\Controllers\RoleController::class,'store'])->name('role.store');
+    Route::delete('/admin/role/{role}/delete',[App\Http\Controllers\RoleController::class,'destroy'])->name('role.destroy');
+    Route::get('/admin/role/{role}/edit',[App\Http\Controllers\RoleController::class,'edit'])->name('role.edit');
+    Route::put('/admin/role/{role}/update',[App\Http\Controllers\RoleController::class,'update'])->name('role.update');
+    Route::put('/admin/role/{role}/permission/attach',[App\Http\Controllers\RoleController::class,'attach'])->name('permission.attach');
+    Route::put('/admin/role/{role}/permission/detach',[App\Http\Controllers\RoleController::class,'detach'])->name('permission.detach');
+    Route::delete('/admin/permission/{permission}/delete',[App\Http\Controllers\PermissionController::class,'destroy'])->name('permission.destroy');
+    Route::post('/admin/permission/create',[App\Http\Controllers\PermissionController::class,'store'])->name('permission.store');
+
 });
 
 // Route::get('/admin/posts/{post}/edit', [App\Http\Controllers\PostController::class, 'edit'])->middleware('can:view,post')->name('post.edit');

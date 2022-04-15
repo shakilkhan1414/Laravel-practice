@@ -60,6 +60,10 @@
       <!-- Nav Item - Utilities Collapse Menu -->
       <x-admin-master-users-nav></x-admin-master-users-nav>
 
+      {{-- Auhoriation nav --}}
+
+      <x-admin-master-authorization-nav></x-admin-master-authorization-nav>
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 
