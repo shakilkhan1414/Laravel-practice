@@ -7,6 +7,12 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+
+    public function index(){
+        $users=User::paginate(10);
+        return view('user.index',compact('users'));
+    }
+
     public function show(User $user){
         return view('user.profile',compact('user'));
     }
@@ -30,7 +36,14 @@ class UserController extends Controller
 
         return back();
 
-
     }
+
+    public function destroy(User $user){
+        $user->delete();
+        session()->flash('delete-user-message','User was deleted!');
+        return back();
+    }
+
+
 
 }

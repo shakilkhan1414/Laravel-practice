@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\support\Str;
 
 class User extends Authenticatable
 {
@@ -58,7 +59,7 @@ class User extends Authenticatable
 
     public function userHasRole($roleName){
         foreach ($this->roles as $role) {
-            if ($role->name==$roleName) {
+            if (Str::lower($role->name)==Str::lower($roleName)) {
                 return true;
             }
             return false;
