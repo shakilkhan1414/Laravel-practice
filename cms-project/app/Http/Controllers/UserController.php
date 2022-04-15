@@ -44,6 +44,17 @@ class UserController extends Controller
         return back();
     }
 
+    public function attach(User $user){
+        $user->roles()->attach(request('role'));
+        session()->flash('attach-message','Role attached!');
+        return back();
+    }
+
+    public function detach(User $user){
+        $user->roles()->detach(request('role'));
+        session()->flash('detach-message','Role detached!');
+        return back();
+    }
 
 
 }

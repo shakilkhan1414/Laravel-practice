@@ -40,6 +40,9 @@ Route::middleware('auth')->group(function(){
 
 Route::middleware('role:admin')->group(function(){
     Route::get('/admin/users/',[App\Http\Controllers\UserController::class,'index'])->name('user.index');
+    Route::get('/admin/users/{user}/roles',[App\Http\Controllers\RoleController::class,'show'])->name('user.roles');
+    Route::put('/admin/users/{user}/roles/attach',[App\Http\Controllers\UserController::class,'attach'])->name('user.role.attach');
+    Route::put('/admin/users/{user}/roles/detach',[App\Http\Controllers\UserController::class,'detach'])->name('user.role.detach');
 });
 
 // Route::get('/admin/posts/{post}/edit', [App\Http\Controllers\PostController::class, 'edit'])->middleware('can:view,post')->name('post.edit');

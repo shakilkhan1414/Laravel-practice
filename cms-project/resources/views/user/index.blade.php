@@ -48,7 +48,7 @@
                         <td>{{$user->created_at->diffForHumans()}}</td>
                         <td>{{$user->updated_at->diffForHumans()}}</td>
                         <td>
-                            {{-- <a href="{{route('user.edit',$user->id)}}" class="btn btn-primary btn-sm" style="margin-bottom: 5px;">Edit</a> --}}
+                            <a href="{{route('user.roles',$user)}}" class="btn btn-primary btn-sm" style="margin-bottom: 5px;">Roles</a>
 
                                 <form action="{{route('user.destroy',$user->id)}}" method="post" enctype="multipart/form-data">
                                     {{ csrf_field() }}
