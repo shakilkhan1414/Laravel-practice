@@ -64,6 +64,16 @@
 
       <x-admin-master-authorization-nav></x-admin-master-authorization-nav>
 
+      {{-- category nav --}}
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{route('category.index')}}">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Post Categories</span>
+        </a>
+      </li>
+
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 

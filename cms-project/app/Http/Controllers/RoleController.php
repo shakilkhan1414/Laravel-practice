@@ -25,6 +25,7 @@ class RoleController extends Controller
         $inputs['slug']=Str::replace(" ","-",$slug);
 
         Role::create($inputs);
+        session()->flash('add-role-message','Role added!');
         return back();
     }
 

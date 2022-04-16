@@ -23,6 +23,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::get('/post/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('post');
 
+Route::get('/post/category/{slug}', [App\Http\Controllers\PostController::class, 'category'])->name('post.category.show');
+
 Route::middleware('auth')->group(function(){
     Route::get('/admin', [App\Http\Controllers\AdminsController::class, 'index'])->name('admin.index');
     Route::get('/admin/posts', [App\Http\Controllers\PostController::class, 'index'])->name('post.index');
@@ -39,7 +41,7 @@ Route::middleware('auth')->group(function(){
 });
 
 Route::middleware('role:admin')->group(function(){
-    
+
     Route::get('/admin/users/',[App\Http\Controllers\UserController::class,'index'])->name('user.index');
     Route::get('/admin/users/{user}/roles',[App\Http\Controllers\RoleController::class,'show'])->name('user.roles');
     Route::put('/admin/users/{user}/roles/attach',[App\Http\Controllers\UserController::class,'attach'])->name('user.role.attach');
@@ -54,8 +56,12 @@ Route::middleware('role:admin')->group(function(){
     Route::put('/admin/role/{role}/permission/detach',[App\Http\Controllers\RoleController::class,'detach'])->name('permission.detach');
     Route::delete('/admin/permission/{permission}/delete',[App\Http\Controllers\PermissionController::class,'destroy'])->name('permission.destroy');
     Route::post('/admin/permission/create',[App\Http\Controllers\PermissionController::class,'store'])->name('permission.store');
+    Route::get('/admin/post/category',[App\Http\Controllers\CategoryController::class,'index'])->name('category.index');
+    Route::delete('/admin/post/category/{category}/delete',[App\Http\Controllers\CategoryController::class,'destroy'])->name('category.destroy');
+    Route::post('/admin/post/category/create',[App\Http\Controllers\CategoryController::class,'store'])->name('category.store');
 
 });
+
 
 // Route::get('/admin/posts/{post}/edit', [App\Http\Controllers\PostController::class, 'edit'])->middleware('can:view,post')->name('post.edit');
 

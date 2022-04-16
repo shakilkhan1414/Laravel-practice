@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-sm-3">
-            <h4>Create Role</h4>
+            <h4>Create Category</h4>
             <hr>
 
             @if (count($errors)>0)
@@ -13,7 +13,7 @@
                 @endforeach
             @endif
 
-            <form action="{{route('role.store')}}" method="post">
+            <form action="{{route('category.store')}}" method="post">
 
                 {{ csrf_field() }}
                 <div class="form-group">
@@ -31,15 +31,15 @@
             </form>
         </div>
         <div class="col-sm-9">
-            @if (session()->has('role-delete'))
-                <div class="alert alert-danger">{{session('role-delete')}}</div>
+            @if (session()->has('category-delete'))
+                <div class="alert alert-danger">{{session('category-delete')}}</div>
             @endif
-            @if (session()->has('add-role-message'))
-                <div class="alert alert-success">{{session('add-role-message')}}</div>
+            @if (session()->has('add-category-message'))
+                <div class="alert alert-success">{{session('add-category-message')}}</div>
             @endif
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Roles</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Categories</h6>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -61,14 +61,13 @@
                         </tr>
                       </tfoot>
                       <tbody>
-                          @foreach ($roles as $role)
+                          @foreach ($categories as $category)
                             <tr>
-                                <td>{{$role->id}}</td>
-                                <td>{{$role->name}}</td>
-                                <td>{{$role->slug}}</td>
+                                <td>{{$category->id}}</td>
+                                <td>{{$category->name}}</td>
+                                <td>{{$category->slug}}</td>
                                 <td>
-                                    <a href="{{route('role.edit',$role)}}" class="btn btn-primary btn-sm" style="margin-bottom: 5px">Edit</a>
-                                    <form action="{{route('role.destroy',$role)}}" method="post">
+                                    <form action="{{route('category.destroy',$category)}}" method="post">
                                         {{ csrf_field() }}
                                         @method('Delete')
                                         <input type="submit" value="Delete" class="btn btn-danger btn-sm">

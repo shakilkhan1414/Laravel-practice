@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -28,14 +29,23 @@ class PostController extends Controller
     public function store(){
         $input=request()->validate([
             'title' => 'required | min: 5',
-            'body' => 'required'
+            'body' => 'required',
+            'category' => 'required'
         ]);
 
         if(request('image')){
             $input['post_image']=request('image')->store('images/post');
         }
+        else{
+            $input['post_image']=null;
+        }
 
-        User::find(Auth::user()->id)->posts()->create($input);
+        $post=User::find(Auth::user()->id)->posts()->create([
+            'title'=> $input['title'],
+            'body'=> $input['body'],
+            'post_image'=> $input['post_image']
+        ]);
+        $post->categories()->attach($input['category']);
         session()->flash('created-message','Post was created!');
 
         return redirect()->route('post.index');
@@ -63,6 +73,9 @@ class PostController extends Controller
             $input['post_image']=request('image')->store('images/post');
             $post->post_image = $input['post_image'];
         }
+        if(!$post->categories->contains(request('category'))){
+            $post->categories()->attach(request('category'));
+        }
 
         $post->title=$input['title'];
         $post->body=$input['body'];
@@ -76,6 +89,14 @@ class PostController extends Controller
         $post->update();
         session()->flash('updated-message','Post was updated!');
         return redirect()->route('post.index');
+    }
+
+    public function category($slug){
+        $category=Category::whereSlug($slug)->get();
+        // $category=Category::find(2);
+        $posts=$category[0]->posts;
+        $category_name=$category[0]->name;
+        return view('posts.category-posts',compact('posts','category_name'));
     }
 
 }

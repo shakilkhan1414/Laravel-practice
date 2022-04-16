@@ -34,6 +34,9 @@
             @if (session()->has('permission-delete'))
                 <div class="alert alert-danger">{{session('permission-delete')}}</div>
             @endif
+            @if (session()->has('add-permission-message'))
+                <div class="alert alert-success">{{session('add-permission-message')}}</div>
+            @endif
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary">Permissions</h6>

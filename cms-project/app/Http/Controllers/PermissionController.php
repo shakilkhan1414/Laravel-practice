@@ -22,6 +22,7 @@ class PermissionController extends Controller
         $inputs['slug']=Str::replace(" ","-",$slug);
 
         Permission::create($inputs);
+        session()->flash('add-permission-message','Permission added!');
         return back();
     }
 

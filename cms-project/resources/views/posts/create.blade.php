@@ -22,6 +22,15 @@
                 <textarea name="body" id="body" cols="30" class="form-control" rows="5" placeholder="Enter Body"></textarea>
             </div>
             <div class="form-group">
+                <label for="category">Category</label>
+                <select name="category" id="category" class="form-control">
+                    <option value="" selected>Select Category</option>
+                    @foreach (App\Models\Category::all() as $category)
+                        <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="image">Image</label>
                 <input type="file" name="image" id="image" class="form-control">
             </div>
