@@ -23,7 +23,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::get('/post/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('post');
 
-Route::get('/post/category/{slug}', [App\Http\Controllers\PostController::class, 'category'])->name('post.category.show');
+Route::get('/posts/category/{slug}', [App\Http\Controllers\PostController::class, 'category'])->name('post.category.show');
 
 Route::middleware('auth')->group(function(){
     Route::get('/admin', [App\Http\Controllers\AdminsController::class, 'index'])->name('admin.index');
