@@ -22,11 +22,11 @@
 
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title">
+                <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" value="{{old('title','')}}">
             </div>
             <div class="form-group">
                 <label for="body">Body</label>
-                <textarea name="body" id="body" cols="30" class="form-control" rows="5" placeholder="Enter Body"></textarea>
+                <textarea name="body" id="body" cols="30" class="form-control" rows="5" placeholder="Enter Body">{{old('body','')}}</textarea>
             </div>
             <div class="form-group">
                 <label for="category">Category</label>

@@ -5,12 +5,14 @@
         <h2 class="my-4">Blog List</h2>
 
         <!-- Blog Post -->
-        @foreach ($posts as $post)
 
-            <div class="card mb-4">
-                <img class="card-img-top" src="{{$post->post_image}}" alt="Card image cap">
+        <div class="d-flex flex-wrap justify-content-left">
+
+            @foreach ($posts as $post)
+            <div class="card mb-4 mx-4 col-sm-5" style="padding: 0px;">
+                <img class="card-img-top" style="height:180px;" src="{{$post->post_image}}" alt="Card image cap">
                 <div class="card-body">
-                    <h3 class="card-title">{{$post->title}}</h3>
+                    <h3 class="card-title" style="font-size: 22px;">{{Illuminate\Support\Str::limit($post->title,'40','...')}}</h3>
                     <p class="card-text">{{Illuminate\Support\Str::limit($post->body,'150','...')}}</p>
                     <a href="{{route('post',$post->id)}}" class="btn btn-primary">Read More &rarr;</a>
                 </div>
@@ -20,17 +22,13 @@
                 </div>
             </div>
 
-        @endforeach
+            @endforeach
+
+        </div>
+
 
         <!-- Pagination -->
-        <ul class="pagination justify-content-center mb-4">
-        <li class="page-item">
-            <a class="page-link" href="#">&larr; Older</a>
-        </li>
-        <li class="page-item disabled">
-            <a class="page-link" href="#">Newer &rarr;</a>
-        </li>
-        </ul>
+        {{$posts->links()}}
 
     @endsection
 

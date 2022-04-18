@@ -21,12 +21,15 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/blog', [App\Http\Controllers\HomeController::class, 'index'])->name('blog');
+
 Route::get('/post/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('post');
 
 Route::get('/posts/category/{slug}', [App\Http\Controllers\PostController::class, 'category'])->name('post.category.show');
 
 Route::middleware('auth')->group(function(){
     Route::get('/admin', [App\Http\Controllers\AdminsController::class, 'index'])->name('admin.index');
+    Route::get('/admin/chart', [App\Http\Controllers\AdminsController::class, 'index'])->name('admin.chart');
     Route::get('/admin/posts', [App\Http\Controllers\PostController::class, 'index'])->name('post.index');
     Route::get('/admin/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('post.create');
     Route::post('/admin/posts', [App\Http\Controllers\PostController::class, 'store'])->name('post.store');
@@ -37,6 +40,10 @@ Route::middleware('auth')->group(function(){
     Route::put('/admin/users/{user}/update',[App\Http\Controllers\UserController::class,'update'])->name('user.profile.update');
 
     Route::delete('/admin/users/{user}/delete',[App\Http\Controllers\UserController::class,'destroy'])->name('user.destroy');
+
+    Route::get('/admin/404',function(){
+        return view('admin.404');
+    });
 
 });
 
