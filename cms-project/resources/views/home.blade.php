@@ -2,11 +2,10 @@
 
     @section('main-content')
 
-        <h2 class="my-4">Blog List</h2>
 
         <!-- Blog Post -->
 
-        <div class="d-flex flex-wrap justify-content-left">
+        <div class="d-flex flex-wrap justify-content-left mt-4">
 
             @foreach ($posts as $post)
             <div class="card mb-4 mx-4 col-sm-5" style="padding: 0px;">
